@@ -15,6 +15,13 @@ body {
     
 }
 
+footer {
+    position: absolute;
+    align-self: flex-end;
+    justify-self: flex-start;
+    z-index: 2;
+}
+
 body .content {
     display: grid;
     grid-template-columns: 50% 50%;
@@ -25,25 +32,30 @@ body .content {
     justify-content: center;
     background-color: white;
     border-radius: 10px;
-    margin-top: 7%;
+    margin-top: 15vh;
 }
 
 .card {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto 130px 50px auto;
+    /*grid-template-rows: auto auto 130px 50px auto;*/
+    grid-template-rows: auto 10rem 10rem 3.5rem auto;
     grid-template-areas: "title title" 
                          "name name"
                          "text text"
                          "new-price old-price"
                          "button button";
-    padding: 10%;
+    padding: 1.5rem;
     background-color: white;
 }
 
 .content img {
+    display: flex;
     grid-area: img;
     max-width: 100%;
+    object-fit: contain;
+    flex-shrink: 3;
+    flex-basis: auto;
 } 
 
 .card .title {
@@ -59,23 +71,32 @@ body .content {
 .card .name {
     grid-area: name;
     font-family: 'Fraunces', serif;
-    font-size: 1.5rem;
+    font-size: 1.45em;
+    flex-shrink: 2;
 }
 
 .name h1 {
     margin: 0;
+
 }
 
 .card .text {
     grid-area: text;
-    line-height: 2;
+    line-height: 1.5rem;
     font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    text-wrap: wrap;
     color: hsl(228, 12%, 48%);
     letter-spacing: 2px;
+    max-height: 100%;
+    overflow: visible;
+    padding-top: 1.7em;
 }
 
 .text p {
     margin: 0;
+    max-width: 100%;    
+    max-height: 8rem;
 }
 
 .new-price {
@@ -103,20 +124,31 @@ body .content {
     grid-area: button;
     background-color: hsl(158, 36%, 37%);
     width: 100%;
+    height: 4rem;
     border-radius: 5px;
     margin-top: 10px;
     align-items: center;
     justify-content: center;
+    align-self: center;
+    justify-self: center;
 }
 
 button {
+    display: flex;
+    flex-direction: row;
     background-color: hsl(158, 36%, 37%);
     border: none;
-    width: 100%;
-    height: 100%;
+    min-width: 100%;
+    min-height: 100%;
     color: white;
     font-weight: bold;
     border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+button img  {
+    padding-right: 0.6rem;
 }
 
 button:active {
@@ -132,16 +164,18 @@ button:active {
     color: hsl(228, 45%, 44%);
 }
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 375px), (max-width: 1220px) {
     body .content {
         display: grid;
         grid-template-columns: 1fr;
-        grid-template-rows: 40% 60%;
+        grid-template-rows: 40vh 60vh;
         grid-template-areas: "img"
                              "card";
-        width: 95%;
-        height: 90%;
+        max-width: 400px;
+        width: fit-content; 
+        height: fit-content;
         overflow: hidden;
+        margin-top: 2vh;
     }
     
     .content .banner {
@@ -154,6 +188,7 @@ button:active {
     } 
 
     .card {
+        grid-template-rows: 5vh 15vh 17vh 8vh 10vh;
         z-index: 1;
         padding: 5%;
     }
